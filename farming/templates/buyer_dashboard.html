@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Dashboard | Assured Farming</title>
+
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f0f7f1;
+            color: #263d2d;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #176b3a;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 9px 15px;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 7px;
+        }
+
+        .navbar a:hover {
+            background: white;
+            color: #176b3a;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 300px;
+            padding: 55px 7%;
+            color: white;
+            background:
+                linear-gradient(rgba(0, 55, 20, 0.75),
+                rgba(0, 55, 20, 0.75)),
+                url("https://images.unsplash.com/photo-1500382017468-9049fed747ef");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 680px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            width: fit-content;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 8px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+
+        /* Buyer Information */
+        .profile-box {
+            background: white;
+            margin: 28px 7% 10px;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+            border-left: 5px solid #23934f;
+        }
+
+        .profile-box h2 {
+            color: #176b3a;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .profile-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 15px;
+        }
+
+        .info-item {
+            background: #f5faf5;
+            padding: 15px;
+            border-radius: 9px;
+            overflow-wrap: anywhere;
+        }
+
+        .info-item small {
+            display: block;
+            color: #718075;
+            margin-bottom: 7px;
+        }
+
+        .info-item p {
+            font-weight: bold;
+            color: #263d2d;
+        }
+
+        /* Services */
+        .services {
+            padding: 40px 7% 55px;
+        }
+
+        .services h2 {
+            text-align: center;
+            color: #176b3a;
+            font-size: 29px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #657268;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px 20px;
+            text-align: center;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            border-bottom: 4px solid #23934f;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 9px 22px rgba(0,0,0,0.12);
+        }
+
+        .card .icon {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e8f5e9;
+            border-radius: 50%;
+            font-size: 32px;
+        }
+
+        .card h3 {
+            color: #176b3a;
+            margin-bottom: 11px;
+            font-size: 19px;
+        }
+
+        .card p {
+            color: #657268;
+            font-size: 14px;
+            line-height: 1.7;
+            min-height: 48px;
+            margin-bottom: 20px;
+        }
+
+        .card a {
+            display: inline-block;
+            background: #218344;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .card a:hover {
+            background: #14532d;
+        }
+
+        /* Logout */
+        .logout-section {
+            text-align: center;
+            padding: 0 15px 45px;
+        }
+
+        .logout {
+            display: inline-block;
+            background: #b83232;
+            color: white;
+            padding: 13px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .logout:hover {
+            background: #922424;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #14532d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 15px 5%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .hero {
+                min-height: 260px;
+                padding: 40px 5%;
+            }
+
+            .hero h1 {
+                font-size: 27px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .profile-box {
+                margin: 20px 5%;
+                padding: 20px;
+            }
+
+            .services {
+                padding: 30px 5%;
+            }
+
+            .services h2 {
+                font-size: 25px;
+            }
+
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">🌱 Assured Farming</div>
+        <a href="/">🏠 Home</a>
+    </div>
+
+    <!-- Welcome Section -->
+    <section class="hero">
+        <span class="hero-tag">🌾 Buyer Portal</span>
+        <h1>🛒 Welcome, {{ buyer.name }}!</h1>
+        <p>
+            You have successfully logged in.
+            Manage your profile, connect with farmers,
+            create contracts and track your farming agreements
+            easily from your dashboard.
+        </p>
+    </section>
+
+    <!-- Buyer Information -->
+    <section class="profile-box">
+        <h2>👤 Buyer Information</h2>
+
+        <div class="profile-details">
+            <div class="info-item">
+                <small>📱 Mobile Number</small>
+                <p>{{ buyer.mobile }}</p>
+            </div>
+
+            <div class="info-item">
+                <small>🏢 Company</small>
+                <p>{{ buyer.company }}</p>
+            </div>
+
+            <div class="info-item">
+                <small>📍 Location</small>
+                <p>{{ buyer.location }}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buyer Services -->
+    <section class="services">
+        <h2>Buyer Services</h2>
+        <p class="subtitle">
+            Manage your buying activities and farming agreements in one place.
+        </p>
+
+        <div class="card-container">
+
+            <div class="card">
+                <div class="icon">👤</div>
+                <h3>My Profile</h3>
+                <p>View your personal and company information.</p>
+                <a href="/buyer/profile/">View Profile</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">✏️</div>
+                <h3>Edit Profile</h3>
+                <p>Update your contact and company details.</p>
+                <a href="{% url 'buyer_edit_profile' %}">Edit Profile</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">📄</div>
+                <h3>📄 My Contracts</h3>
+                <p>View the contracts created with farmers.</p>
+                <a href="/buyer/contracts/">View Contracts</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">🌾</div>
+                <h3>Available Farmers</h3>
+                <p>Explore registered farmers and their crop details.</p>
+                <a href="/buyer/available-farmers/">View Farmers</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">📝</div>
+                <h3>Create Contract</h3>
+                <p>Create a farming agreement with a farmer.</p>
+                <a href="/contract/">Create Contract</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Logout -->
+    <div class="logout-section">
+        <a class="logout" href="/buyer/logout/">🚪 Logout</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        🌱 Assured Contract Farming System | Growing Together
+    </footer>
+
+</body>
+</html>

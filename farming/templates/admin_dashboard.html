@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard | Assured Farming</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f3f7f2;
+            color: #26352a;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #1b5e20;
+            color: white;
+            padding: 17px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .home-btn {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 9px 13px;
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 6px;
+        }
+
+        .logout-btn {
+            background: #c62828;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #a71919;
+        }
+
+        /* Header */
+        .hero {
+            background: linear-gradient(120deg, #e8f5e9, #f7fbf4);
+            padding: 35px 5%;
+            border-bottom: 1px solid #d9e8d9;
+        }
+
+        .hero h1 {
+            color: #1b5e20;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #5e6e60;
+            line-height: 1.6;
+        }
+
+        /* Main content */
+        .container {
+            width: 90%;
+            max-width: 1450px;
+            margin: 25px auto 45px;
+        }
+
+        /* Summary cards */
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+            border-left: 5px solid #2e7d32;
+        }
+
+        .summary-card .symbol {
+            font-size: 29px;
+            margin-bottom: 10px;
+        }
+
+        .summary-card h3 {
+            color: #607064;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .summary-card .count {
+            color: #1b5e20;
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        /* Data sections */
+        .section {
+            background: white;
+            padding: 22px;
+            margin-bottom: 28px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+        }
+
+        .section h2 {
+            color: #1b5e20;
+            font-size: 22px;
+            margin-bottom: 17px;
+        }
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th, td {
+            border-bottom: 1px solid #e2e9e2;
+            padding: 13px 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background: #e8f5e9;
+            color: #245c2b;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        tr:hover td {
+            background: #f8fbf7;
+        }
+
+        /* Status forms */
+        .status-form {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 190px;
+        }
+
+        select {
+            padding: 8px;
+            border: 1px solid #cbd8cb;
+            border-radius: 5px;
+            background: white;
+            max-width: 125px;
+        }
+
+        .update-btn {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 10px;
+            cursor: pointer;
+        }
+
+        .update-btn:hover {
+            background: #1b5e20;
+        }
+
+        .back-section {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #455a64;
+            color: white;
+            text-decoration: none;
+            padding: 11px 20px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: #263238;
+        }
+
+        footer {
+            background: #17451e;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 15px 5%;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .hero h1 {
+                font-size: 25px;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+            .section {
+                padding: 15px;
+            }
+
+            .section h2 {
+                font-size: 19px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">🌱 Assured Farming</div>
+
+        <div class="nav-actions">
+            <a class="home-btn" href="/">🏠 Home</a>
+
+            <form method="POST" action="{% url 'admin_logout' %}">
+                {% csrf_token %}
+                <button class="logout-btn" type="submit">
+                    🚪 Admin Logout
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <section class="hero">
+        <h1>🛠️ Admin Dashboard</h1>
+        <p>
+            Welcome, Admin! Manage farmers, buyers, contracts,
+            delivery progress and payment status from one place.
+        </p>
+    </section>
+
+    <main class="container">
+
+        <!-- Summary Cards -->
+        <section class="summary">
+
+            <div class="summary-card">
+                <div class="symbol">👨‍🌾</div>
+                <h3>Total Farmers</h3>
+                <div class="count">{{ farmers|length }}</div>
+            </div>
+
+            <div class="summary-card">
+                <div class="symbol">🏢</div>
+                <h3>Total Buyers</h3>
+                <div class="count">{{ buyers|length }}</div>
+            </div>
+
+            <div class="summary-card">
+                <div class="symbol">📄</div>
+                <h3>Total Contracts</h3>
+                <div class="count">{{ contracts|length }}</div>
+            </div>
+
+        </section>
+
+        <!-- Farmers -->
+        <section class="section">
+            <h2>👨‍🌾 Registered Farmers</h2>
+
+            <div class="table-wrap">
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Village</th>
+                        <th>Crop</th>
+                    </tr>
+
+                    {% for farmer in farmers %}
+                    <tr>
+                        <td>{{ farmer.name }}</td>
+                        <td>{{ farmer.mobile }}</td>
+                        <td>{{ farmer.village }}</td>
+                        <td>{{ farmer.crop }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No farmers found.</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+
+        <!-- Buyers -->
+        <section class="section">
+            <h2>🏢 Registered Buyers</h2>
+
+            <div class="table-wrap">
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Company</th>
+                        <th>Location</th>
+                    </tr>
+
+                    {% for buyer in buyers %}
+                    <tr>
+                        <td>{{ buyer.name }}</td>
+                        <td>{{ buyer.mobile }}</td>
+                        <td>{{ buyer.company }}</td>
+                        <td>{{ buyer.location }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No buyers found.</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+
+        <!-- Contracts -->
+        <section class="section">
+            <h2>📄 Farming Contracts</h2>
+
+            <div class="table-wrap">
+                <table>
+                    <tr>
+                        <th>Farmer</th>
+                        <th>Buyer</th>
+                        <th>Crop</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Date</th>
+                        <th>Delivery Status</th>
+                        <th>Payment Status</th>
+                    </tr>
+
+                    {% for contract in contracts %}
+                    <tr>
+                        <td>{{ contract.farmer.name }}</td>
+                        <td>{{ contract.buyer.name }}</td>
+                        <td>{{ contract.crop }}</td>
+                        <td>{{ contract.quantity }}</td>
+                        <td>₹{{ contract.price }}</td>
+                        <td>{{ contract.contract_date }}</td>
+
+                        <!-- Delivery Status -->
+                        <td>
+                            <form method="POST"
+                                  class="status-form"
+                                  action="{% url 'update_delivery_status' contract.id %}">
+                                {% csrf_token %}
+
+                                <select name="delivery_status">
+                                    <option value="Pending"
+                                        {% if contract.delivery_status == "Pending" %}selected{% endif %}>
+                                        Pending
+                                    </option>
+
+                                    <option value="In Progress"
+                                        {% if contract.delivery_status == "In Progress" %}selected{% endif %}>
+                                        In Progress
+                                    </option>
+
+                                    <option value="Delivered"
+                                        {% if contract.delivery_status == "Delivered" %}selected{% endif %}>
+                                        Delivered
+                                    </option>
+                                </select>
+
+                                <button class="update-btn" type="submit">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+
+                        <!-- Payment Status -->
+                        <td>
+                            <form method="POST"
+                                  class="status-form"
+                                  action="{% url 'update_payment_status' contract.id %}">
+                                {% csrf_token %}
+
+                                <select name="payment_status">
+                                    <option value="Pending"
+                                        {% if contract.payment_status == "Pending" %}selected{% endif %}>
+                                        Pending
+                                    </option>
+
+                                    <option value="Paid"
+                                        {% if contract.payment_status == "Paid" %}selected{% endif %}>
+                                        Paid
+                                    </option>
+                                </select>
+
+                                <button class="update-btn" type="submit">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    {% empty %}
+                    <tr>
+                        <td colspan="8">No contracts found.</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+
+        <!-- Back to Home -->
+        <div class="back-section">
+            <a class="back-btn" href="/">⬅ Back to Home</a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        🌱 Assured Contract Farming System | Growing Together
+    </footer>
+
+</body>
+</html>

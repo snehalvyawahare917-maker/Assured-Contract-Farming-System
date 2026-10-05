@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farmer Profile | Assured Farming</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f3f8f1;
+            color: #26352a;
+        }
+
+        .navbar {
+            background: #1b5e20;
+            color: white;
+            padding: 17px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #e8f5e9, #f5fbf3);
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        .hero h1 {
+            color: #1b5e20;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #637267;
+            line-height: 1.6;
+        }
+
+        .profile {
+            width: 90%;
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .avatar {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 15px;
+            background: #e8f5e9;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 43px;
+        }
+
+        .profile h2 {
+            text-align: center;
+            color: #1b5e20;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            text-align: center;
+            color: #718074;
+            margin-bottom: 25px;
+        }
+
+        .details {
+            border-top: 1px solid #e0e9e0;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 5px;
+            border-bottom: 1px solid #e0e9e0;
+        }
+
+        .detail-label {
+            color: #607064;
+            font-weight: bold;
+        }
+
+        .detail-value {
+            color: #26352a;
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+            padding: 11px 17px;
+            border-radius: 7px;
+            color: white;
+            background: #2e7d32;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #1b5e20;
+        }
+
+        .btn-secondary {
+            background: #546e7a;
+        }
+
+        .btn-secondary:hover {
+            background: #37474f;
+        }
+
+        .btn-logout {
+            background: #c62828;
+        }
+
+        .btn-logout:hover {
+            background: #a71919;
+        }
+
+        footer {
+            background: #17451e;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 15px 5%;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .hero h1 {
+                font-size: 25px;
+            }
+
+            .profile {
+                padding: 22px 17px;
+            }
+
+            .detail-row {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 7px;
+            }
+
+            .detail-value {
+                text-align: left;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">🌱 Assured Farming</div>
+        <a href="/">🏠 Home</a>
+    </div>
+
+    <!-- Page Header -->
+    <section class="hero">
+        <h1>👨‍🌾 Farmer Profile</h1>
+        <p>View your personal and farming information.</p>
+    </section>
+
+    <!-- Profile Card -->
+    <div class="profile">
+
+        <div class="avatar">👨‍🌾</div>
+
+        <h2>{{ farmer.name }}</h2>
+        <p class="tagline">Registered Farmer</p>
+
+        <div class="details">
+
+            <div class="detail-row">
+                <span class="detail-label">👤 Full Name</span>
+                <span class="detail-value">{{ farmer.name }}</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">📱 Mobile Number</span>
+                <span class="detail-value">{{ farmer.mobile }}</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">📍 Village</span>
+                <span class="detail-value">{{ farmer.village }}</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">🌱 Crop</span>
+                <span class="detail-value">{{ farmer.crop }}</span>
+            </div>
+
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="actions">
+
+            <a class="btn" href="/farmer/contracts/">
+                📄 My Contracts
+            </a>
+
+            <a class="btn" href="{% url 'farmer_edit_profile' %}">
+                ✏️ Edit Profile
+            </a>
+
+            <a class="btn btn-secondary" href="/farmer/dashboard/">
+                ⬅ Dashboard
+            </a>
+
+            <a class="btn btn-logout" href="/farmer/logout/">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        🌱 Assured Contract Farming System | Growing Together
+    </footer>
+
+</body>
+</html>

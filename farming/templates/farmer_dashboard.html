@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f3f8f1;
+            color: #263b2b;
+        }
+
+        /* Navbar */
+        nav {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px #00000012;
+        }
+
+        .logo {
+            color: #247a36;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #286c36;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Welcome */
+        .welcome {
+            margin: 30px auto;
+            width: 86%;
+            padding: 45px;
+            border-radius: 15px;
+            color: white;
+            background:
+                linear-gradient(90deg, #174b2ce8, #267b3bbd),
+                url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=85");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .welcome h1 {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .welcome p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Main */
+        .container {
+            width: 86%;
+            margin: 35px auto;
+        }
+
+        .container h2 {
+            color: #247a36;
+            margin-bottom: 10px;
+            font-size: 27px;
+        }
+
+        .intro {
+            color: #667568;
+            margin-bottom: 25px;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px 20px;
+            text-align: center;
+            border-radius: 13px;
+            box-shadow: 0 4px 18px #00000010;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 22px #00000018;
+        }
+
+        .icon {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #286c36;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #667568;
+            line-height: 1.5;
+            min-height: 45px;
+            margin-bottom: 18px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 11px 20px;
+            background: #329344;
+            color: white;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #216e31;
+        }
+
+        .logout {
+            background: #b83a35;
+        }
+
+        .logout:hover {
+            background: #922b27;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: #173d25;
+            color: white;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .welcome {
+                padding: 30px 22px;
+            }
+
+            .welcome h1 {
+                font-size: 27px;
+            }
+
+            .container, .welcome {
+                width: 92%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">🌱 Assured Farming</div>
+        <a href="/">🏠 Home</a>
+    </nav>
+
+    <!-- Welcome Section -->
+    <section class="welcome">
+        <h1>🌾 Welcome, Farmer!</h1>
+        <p>
+            You have successfully logged in.<br>
+            Manage your crops, contracts, delivery and payments
+            easily from your dashboard.
+        </p>
+    </section>
+
+    <!-- Farmer Services -->
+    <main class="container">
+        <h2>Farmer Services</h2>
+        <p class="intro">
+            Manage your farming activities in one place.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">👤</div>
+                <h3>My Profile</h3>
+                <p>View your personal and farming information.</p>
+                <a href="/farmer/profile/" class="btn">View Profile</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">✏️</div>
+                <h3>Edit Profile</h3>
+                <p>Update your personal and contact details.</p>
+                <a href="{% url 'farmer_edit_profile' %}" class="btn">Edit Profile</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">🌱</div>
+                <h3>My Crop</h3>
+                <p>Manage your crop details and information.</p>
+                <a href="/farmer/crop/" class="btn">View Crop</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">📄</div>
+                <h3>My Contracts</h3>
+                <p>View your agreements with registered buyers.</p>
+                <a href="/farmer/contracts/" class="btn">View Contracts</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">🚚</div>
+                <h3>Delivery Status</h3>
+                <p>Check the latest delivery progress of your crops.</p>
+                <a href="/farmer/delivery/" class="btn">Track Delivery</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">💰</div>
+                <h3>Payment Status</h3>
+                <p>Check the payment status of your contracts.</p>
+                <a href="/farmer/payment/" class="btn">View Payments</a>
+            </div>
+
+        </div>
+
+        <div style="text-align:center; margin-top:35px;">
+            <a href="/farmer/logout/" class="btn logout">🚪 Logout</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>🌱 Assured Contract Farming System | Growing Together</p>
+    </footer>
+
+</body>
+</html>

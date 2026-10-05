@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Status | Assured Farming</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f0f7f1;
+            color: #263d2d;
+        }
+
+        nav {
+            background: #176b3a;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h2 {
+            font-size: 22px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            color: #176b3a;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #66756a;
+        }
+
+        .welcome {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .welcome h2 {
+            color: #176b3a;
+            font-size: 21px;
+        }
+
+        .delivery {
+            background: white;
+            border-left: 5px solid #23934f;
+            padding: 24px;
+            margin-bottom: 22px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .delivery-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding-bottom: 15px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid #e5eee7;
+        }
+
+        .delivery-title h2 {
+            color: #176b3a;
+            font-size: 20px;
+        }
+
+        .status {
+            display: inline-block;
+            background: #e1f5e7;
+            color: #176b3a;
+            padding: 8px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .detail {
+            background: #f6faf6;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .detail small {
+            display: block;
+            color: #718075;
+            margin-bottom: 7px;
+            font-size: 13px;
+        }
+
+        .detail p {
+            color: #263d2d;
+            font-size: 16px;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .empty {
+            background: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .empty h2 {
+            color: #176b3a;
+            margin-bottom: 10px;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #176b3a;
+            color: white;
+            text-decoration: none;
+            padding: 12px 22px;
+            margin: 5px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #0e512b;
+        }
+
+        .logout {
+            background: #64746a;
+        }
+
+        .logout:hover {
+            background: #46554b;
+        }
+
+        footer {
+            background: #14532d;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 600px) {
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+            .heading h1 {
+                font-size: 26px;
+            }
+
+            .delivery {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h2>🌱 Assured Farming</h2>
+        <a href="/">🏠 Home</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="heading">
+            <h1>🚚 Delivery Status</h1>
+            <p>Track the delivery progress of your crops.</p>
+        </div>
+
+        <div class="welcome">
+            <h2>👨‍🌾 Welcome, {{ farmer.name }}</h2>
+        </div>
+
+        {% for contract in contracts %}
+
+            <div class="delivery">
+
+                <div class="delivery-title">
+                    <h2>🌾 Crop Delivery Details</h2>
+                    <span class="status">
+                        🚚 {{ contract.delivery_status }}
+                    </span>
+                </div>
+
+                <div class="details">
+
+                    <div class="detail">
+                        <small>🌱 Crop</small>
+                        <p>{{ contract.crop }}</p>
+                    </div>
+
+                    <div class="detail">
+                        <small>🏢 Buyer</small>
+                        <p>{{ contract.buyer.name }}</p>
+                    </div>
+
+                    <div class="detail">
+                        <small>⚖️ Quantity</small>
+                        <p>{{ contract.quantity }}</p>
+                    </div>
+
+                    <div class="detail">
+                        <small>📅 Contract Date</small>
+                        <p>{{ contract.contract_date }}</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% empty %}
+
+            <div class="empty">
+                <h2>📦 No Deliveries Available</h2>
+                <p>You don't have any contracts available for delivery tracking.</p>
+            </div>
+
+        {% endfor %}
+
+        <div class="buttons">
+            <a href="/farmer/dashboard/" class="btn">
+                ⬅ Back to Dashboard
+            </a>
+
+            <a href="/farmer/logout/" class="btn logout">
+                🚪 Logout
+            </a>
+        </div>
+
+    </div>
+
+    <footer>
+        🌱 Assured Contract Farming System | Growing Together
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Buyer Profile</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f0f7f1;
+            color: #26352a;
+        }
+
+        .navbar {
+            background: #176b3a;
+            color: white;
+            padding: 18px 8%;
+        }
+
+        .navbar h2 {
+            font-size: 22px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .form-card {
+            background: white;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #176b3a;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #718078;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #385642;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbdccc;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #176b3a;
+            box-shadow: 0 0 4px #a4d3b1;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        button, .back-btn {
+            flex: 1;
+            padding: 13px 10px;
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button {
+            background: #176b3a;
+            color: white;
+        }
+
+        .back-btn {
+            background: #e5f1e8;
+            color: #176b3a;
+            border: 1px solid #c7dfcd;
+        }
+
+        button:hover, .back-btn:hover {
+            opacity: 0.88;
+        }
+
+        footer {
+            text-align: center;
+            color: #718078;
+            padding: 20px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 480px) {
+            .form-card {
+                padding: 25px 18px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>🌱 Contract Farming</h2>
+    </div>
+
+    <div class="container">
+        <div class="form-card">
+
+            <h1>✏️ Edit Buyer Profile</h1>
+            <p class="subtitle">Update your account information</p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name"
+                           value="{{ buyer.name }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="text" id="mobile" name="mobile"
+                           value="{{ buyer.mobile }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company Name</label>
+                    <input type="text" id="company" name="company"
+                           value="{{ buyer.company }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location"
+                           value="{{ buyer.location }}" required>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit">💾 Update Profile</button>
+
+                    <a href="/buyer/profile/" class="back-btn">
+                        ← Back to Profile
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Contract Farming System | All Rights Reserved
+    </footer>
+
+</body>
+</html>
